@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+[data-tabname].is-hidden {
+    display: none;
+}
