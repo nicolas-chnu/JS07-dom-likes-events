@@ -40,6 +40,11 @@ nav button {
     }
 }
 
-[data-tabname].is-hidden {
-    display: none;
+[data-tabname] {
+    transition: opacity .5s;
+
+    &.is-hidden {
+        display: none;
+    }
 }
+

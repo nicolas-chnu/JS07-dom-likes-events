@@ -26,11 +26,11 @@ function createTabs(elem) {
         tabsContainer.appendChild(button);
     })
 
-    elem.addEventListener('click', e => updateTab(e))
+    elem.addEventListener('click', async e => await updateTab(e))
     elem.prepend(tabsContainer);
 }
 
-function updateTab(event) {
+async function updateTab(event) {
     const button = event.target;
 
     if (!button.classList.contains('tab-btn') || button.classList.contains('active')) {
@@ -43,7 +43,16 @@ function updateTab(event) {
 
     const newTabPage = document.querySelector(`[data-tabname="${event.target.innerText}"]`);
 
+    setTimeout(() => currentTabPage.style.opacity = '0');
+
+    await new Promise(resolve => setTimeout( resolve, 600));
+
     currentTabPage.classList.add('is-hidden');
+
+    newTabPage.style.opacity = '0';
     newTabPage.classList.remove('is-hidden');
+    setTimeout(() => newTabPage.style.opacity = '1');
     currentTabPage = newTabPage;
+
+    await new Promise(resolve => setTimeout( resolve, 600));
 }
