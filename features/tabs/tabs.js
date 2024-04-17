@@ -1,5 +1,6 @@
 let currentBtn;
 let currentTabPage;
+let isAnimating = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     const pageContainer = document.querySelector('.my-pages');
@@ -31,6 +32,11 @@ function createTabs(elem) {
 }
 
 async function updateTab(event) {
+    if (isAnimating) {
+        return
+    }
+
+    isAnimating = true;
     const button = event.target;
 
     if (!button.classList.contains('tab-btn') || button.classList.contains('active')) {
@@ -45,7 +51,7 @@ async function updateTab(event) {
 
     setTimeout(() => currentTabPage.style.opacity = '0');
 
-    await new Promise(resolve => setTimeout( resolve, 600));
+    await new Promise(resolve => setTimeout( resolve, 500));
 
     currentTabPage.classList.add('is-hidden');
 
@@ -54,5 +60,7 @@ async function updateTab(event) {
     setTimeout(() => newTabPage.style.opacity = '1');
     currentTabPage = newTabPage;
 
-    await new Promise(resolve => setTimeout( resolve, 600));
+    await new Promise(resolve => setTimeout( resolve, 500));
+
+    isAnimating = false;
 }
