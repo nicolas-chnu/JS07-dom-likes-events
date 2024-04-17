@@ -35,3 +35,7 @@ ul {
         opacity: .8;
     }
 }
+
+.tree-node:not(:has(.tree-node__content)) > .tree-node__name {
+    background-color: lightblue;
+}
