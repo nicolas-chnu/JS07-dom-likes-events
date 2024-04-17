@@ -18,7 +18,7 @@ ul {
     display: none;
 }
 
-.tree-node.js-is-content-shown > .tree-node__content {
+.tree-node.is-content-shown > .tree-node__content {
     display: block;
 }
 
