@@ -1,3 +1,4 @@
+const FADE_DURATION = 300;
 let currentBtn;
 let currentTabPage;
 let isAnimating = false;
@@ -51,7 +52,7 @@ async function updateTab(event) {
 
     setTimeout(() => currentTabPage.style.opacity = '0');
 
-    await new Promise(resolve => setTimeout( resolve, 500));
+    await new Promise(resolve => setTimeout( resolve, FADE_DURATION));
 
     currentTabPage.classList.add('is-hidden');
 
@@ -60,7 +61,7 @@ async function updateTab(event) {
     setTimeout(() => newTabPage.style.opacity = '1');
     currentTabPage = newTabPage;
 
-    await new Promise(resolve => setTimeout( resolve, 500));
+    await new Promise(resolve => setTimeout( resolve, FADE_DURATION));
 
     isAnimating = false;
 }

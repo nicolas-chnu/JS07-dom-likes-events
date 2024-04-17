@@ -41,7 +41,7 @@ nav button {
 }
 
 [data-tabname] {
-    transition: opacity .5s;
+    transition: opacity .3s;
 
     &.is-hidden {
         display: none;
