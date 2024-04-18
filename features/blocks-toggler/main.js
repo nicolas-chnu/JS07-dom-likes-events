@@ -44,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!e.target.matches('.blocks-list > div')) {
             return;
         }
+
         e.preventDefault();
+
+        if (blocksInfoElem.innerHTML === '') {
+            alert('Press "Get blocks info" to access this feature');
+            return;
+        }
 
         const blockId = e.target.getAttribute('id');
         const blockInfo = blocksInfoElem.querySelector(`[data-block-id=${blockId}]`);
