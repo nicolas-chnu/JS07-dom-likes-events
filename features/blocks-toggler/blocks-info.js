@@ -11,7 +11,16 @@ export function renderBlocksInfo(destElem, blocksParent) {
     });
 }
 
-export function createBlockInfo(title, blockId) {
+export function updateBlocksInfo(destElem, blocksParent) {
+    blocksParent.childNodes.forEach(b => {
+        const blockId = b.getAttribute('id');
+        const blockInfo = destElem.querySelector(`[data-block-id="${blockId}"]`);
+
+        updateBlockInfoAttrs(b, blockInfo);
+    });
+}
+
+function createBlockInfo(title, blockId) {
     const elem = document.createElement('article');
     elem.setAttribute('data-block-id', blockId);
     elem.classList.add('block-info');
@@ -23,7 +32,7 @@ export function createBlockInfo(title, blockId) {
     return elem;
 }
 
-export function updateBlockInfoAttrs(block, blockInfo) {
+function updateBlockInfoAttrs(block, blockInfo) {
     const attrList = blockInfo.querySelector('.block-info__attrs');
     attrList.style.borderColor = block.style.backgroundColor;
 

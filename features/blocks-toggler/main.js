@@ -1,5 +1,5 @@
 import {renderNonToggleBlocks} from "./blocks-rendering.js";
-import {renderBlocksInfo} from "./blocks-info.js";
+import {renderBlocksInfo, updateBlocksInfo} from "./blocks-info.js";
 
 const BLOCKS_COUNT = 20;
 
@@ -35,11 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.style.width = prompt('Enter width') + 'px';
         e.target.style.height = prompt('Enter height') + 'px';
 
-        if (blocksInfoElem.innerHTML === '') {
-            return;
+        if (blocksInfoElem.innerHTML !== '') {
+            updateBlocksInfo(blocksInfoElem, blockList);
         }
-        blocksInfoElem.innerHTML = '';
-        renderBlocksInfo(blocksInfoElem, blockList);
     });
 
     blockList.addEventListener('contextmenu', e => {
