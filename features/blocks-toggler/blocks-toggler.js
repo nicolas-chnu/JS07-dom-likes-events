@@ -1,4 +1,4 @@
-const BLOCKS_COUNT = 6;
+const BLOCKS_COUNT = 12;
 
 document.addEventListener('DOMContentLoaded', () => {
     const blockList = document.querySelector('.blocks-list');
