@@ -12,7 +12,7 @@
     margin: 20px auto;
     gap: 10px;
 
-    & section {
+    & > section {
         background-color: hsla(0, 0%, 94%, 0.29);
         border: solid 2px hsl(0, 0%, 66%);
         border-radius: 10px;
@@ -34,7 +34,7 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .actions {
@@ -61,4 +61,17 @@
     &:hover {
         opacity: .8;
     }
+}
+
+.block-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.block-info__attrs {
+    background-color: hsla(0, 0%, 94%, 0.29);
+    border: solid 4px hsl(0, 0%, 66%);
+    border-radius: 10px;
+    padding: 10px;
 }
