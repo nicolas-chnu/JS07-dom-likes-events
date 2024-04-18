@@ -14,4 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
             blocksInfoElem.innerHTML = '';
             renderBlocksInfo(blocksInfoElem, blockList);
         });
+
+    document.querySelector('.regenerate-blocks-btn')
+        .addEventListener('click', () => {
+            blockList.innerHTML = '';
+            blocksInfoElem.innerHTML = '';
+            renderNonToggleBlocks(blockList, BLOCKS_COUNT);
+        });
 });
