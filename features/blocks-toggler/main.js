@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     blockList.addEventListener('click', e => {
-        if (!e.target.matches('.blocks-list > div')) {
+        if (!e.target.hasAttribute('data-block-id')) {
             return;
         }
 
