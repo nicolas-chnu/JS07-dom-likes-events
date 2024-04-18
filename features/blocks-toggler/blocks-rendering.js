@@ -1,11 +1,4 @@
-const BLOCKS_COUNT = 12;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const blockList = document.querySelector('.blocks-list');
-    renderNonToggleBlocks(blockList, BLOCKS_COUNT);
-});
-
-function renderNonToggleBlocks(elem, count) {
+export function renderNonToggleBlocks(elem, count) {
     for (let i = 0; i < count; i++) {
         const block = document.createElement('div')
         block.classList.add('non-toggle-block');
