@@ -36,4 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         blocksInfoElem.innerHTML = '';
         renderBlocksInfo(blocksInfoElem, blockList);
     });
+
+    blockList.addEventListener('contextmenu', e => {
+        if (!e.target.hasAttribute('data-block-id')) {
+            return;
+        }
+        e.preventDefault();
+
+        const blockId = e.target.getAttribute('data-block-id');
+        const blockInfo = blocksInfoElem.querySelector(`[data-block-for=${blockId}]`);
+        blocksInfoElem.scrollTop = blockInfo.offsetTop - blocksInfoElem.offsetTop - 20;
+    });
 });

@@ -2,12 +2,13 @@ export function renderBlocksInfo(destElem, blocksParent) {
     let i = 1;
 
     blocksParent.childNodes.forEach(b => {
+        const blockId = b.dataset.blockId;
         const containerTop = b.offsetTop - blocksParent.offsetTop;
         const containerLeft = b.offsetLeft - blocksParent.offsetLeft;
         const containerScrollTop = Math.floor(containerTop - blocksParent.scrollTop);
 
         destElem.innerHTML += `
-        <article class="block-info">
+        <article class="block-info" data-block-for="${blockId}">
             <h3 class="block-info__name">Block ${i}</h3>
             <section class="block-info__attrs" style="border-color: ${b.style.backgroundColor}">
                  <p class="block-attr">width: ${b.clientWidth}px</p>       
