@@ -17,7 +17,7 @@ export function renderBlocksInfo(destElem, blocksParent) {
                  <p class="block-attr">window offset Y: ${b.offsetTop}px</p>
                  <p class="block-attr">parent offset X: ${containerLeft}px</p>
                  <p class="block-attr">parent offset Y: ${containerTop}px</p>
-                 <p class="block-attr">current scroll offset Y: ${containerScrollTop}px</p>
+                 <p class="block-attr">scroll offset Y: ${containerScrollTop}px</p>
             </section>
         </article>`
         i++;
