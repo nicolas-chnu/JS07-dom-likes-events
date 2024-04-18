@@ -9,7 +9,7 @@ export function renderBlocksInfo(destElem, blocksParent) {
         destElem.innerHTML += `
         <article class="block-info">
             <h3 class="block-info__name">Block ${i}</h3>
-            <section class="block-info__attrs">
+            <section class="block-info__attrs" style="border-color: ${b.style.backgroundColor}">
                  <p class="block-attr">width: ${b.clientWidth}px</p>       
                  <p class="block-attr">height: ${b.clientHeight}px</p>
                  <p class="block-attr">window offset X: ${b.offsetLeft}px</p>
