@@ -21,4 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
             blocksInfoElem.innerHTML = '';
             renderNonToggleBlocks(blockList, BLOCKS_COUNT);
         });
+
+    blockList.addEventListener('click', e => {
+        if (!e.target.matches('.blocks-list > div')) {
+            return;
+        }
+
+        e.target.style.width = prompt('Enter width') + 'px';
+        e.target.style.height = prompt('Enter height') + 'px';
+
+        if (blocksInfoElem.innerHTML === '') {
+            return;
+        }
+        blocksInfoElem.innerHTML = '';
+        renderBlocksInfo(blocksInfoElem, blockList);
+    });
 });
