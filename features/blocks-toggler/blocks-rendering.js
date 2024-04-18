@@ -1,7 +1,7 @@
 export function renderNonToggleBlocks(elem, count) {
     for (let i = 0; i < count; i++) {
         const block = document.createElement('div')
-        block.setAttribute('data-block-id', 'block-' + i)
+        block.setAttribute('id', 'block-' + i)
         block.classList.add('non-toggle-block');
 
         applyRandomBg(block);

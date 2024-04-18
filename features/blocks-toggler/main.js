@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     blockList.addEventListener('click', e => {
-        if (!e.target.hasAttribute('data-block-id')) {
+        if (!e.target.matches('.blocks-list > div')) {
             return;
         }
 
@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     blockList.addEventListener('contextmenu', e => {
-        if (!e.target.hasAttribute('data-block-id')) {
+        if (!e.target.matches('.blocks-list > div')) {
             return;
         }
         e.preventDefault();
 
-        const blockId = e.target.getAttribute('data-block-id');
-        const blockInfo = blocksInfoElem.querySelector(`[data-block-for=${blockId}]`);
+        const blockId = e.target.getAttribute('id');
+        const blockInfo = blocksInfoElem.querySelector(`[data-block-id=${blockId}]`);
         blocksInfoElem.scrollTop = blockInfo.offsetTop - blocksInfoElem.offsetTop - 20;
     });
 });
