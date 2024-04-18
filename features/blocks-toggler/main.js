@@ -18,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.regenerate-blocks-btn')
         .addEventListener('click', () => {
             blockList.innerHTML = '';
-            blocksInfoElem.innerHTML = '';
             renderNonToggleBlocks(blockList, BLOCKS_COUNT);
+
+            if (blocksInfoElem.innerHTML === '') {
+                return;
+            }
+            blocksInfoElem.innerHTML = '';
+            renderBlocksInfo(blocksInfoElem, blockList);
         });
 
     blockList.addEventListener('click', e => {
