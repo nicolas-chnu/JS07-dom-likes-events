@@ -1,18 +1,13 @@
-let blocksCount = 0;
-
 export function fillWithNonToggleBlocks(blocksParent, count) {
     blocksParent.innerHTML = '';
-    blocksCount = 0;
 
     for (let i = 0; i < count; i++) {
         const block = new BlockBuilder()
-            .setNonToggle()
             .applyRandomBg()
             .applyRandomSize(50, 150)
             .build();
 
         blocksParent.appendChild(block);
-        blocksCount++;
     }
 }
 
@@ -21,20 +16,14 @@ class BlockBuilder {
 
     constructor() {
         this.#block = document.createElement('div');
-        this.#block.setAttribute('id', `block-${crypto.randomUUID()}`);
     }
 
     build() {
         return this.#block;
     }
 
-    setNonToggle() {
-        this.#block.classList.add('non-toggle-block');
-        return this;
-    }
-
     setToggle() {
-        this.#block.classList.add('toggle-block');
+        this.#block.setAttribute('data-toggle-id', crypto.randomUUID());
         return this;
     }
 
