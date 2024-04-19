@@ -5,7 +5,7 @@ export function fillWithNonToggleBlocks(blocksParent, count) {
     blocksCount = 0;
 
     for (let i = 0; i < count; i++) {
-        const block = new BlockBuilder(i + 1)
+        const block = new BlockBuilder()
             .setNonToggle()
             .applyRandomBg()
             .applyRandomSize(50, 150)
@@ -19,9 +19,9 @@ export function fillWithNonToggleBlocks(blocksParent, count) {
 class BlockBuilder {
     #block;
 
-    constructor(number) {
+    constructor() {
         this.#block = document.createElement('div');
-        this.#block.setAttribute('id', `block-${number}`);
+        this.#block.setAttribute('id', `block-${crypto.randomUUID()}`);
     }
 
     build() {
