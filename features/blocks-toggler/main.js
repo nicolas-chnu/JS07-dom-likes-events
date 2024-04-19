@@ -1,11 +1,11 @@
-import {renderNonToggleBlocks} from "./blocks-rendering.js";
+import {fillWithNonToggleBlocks} from "./blocks-rendering.js";
 import {renderBlocksInfo, updateBlocksInfo} from "./blocks-info.js";
 
 const BLOCKS_COUNT = 20;
 
 document.addEventListener('DOMContentLoaded', () => {
     const blockList = document.querySelector('.blocks-list');
-    renderNonToggleBlocks(blockList, BLOCKS_COUNT);
+    fillWithNonToggleBlocks(blockList, BLOCKS_COUNT);
 
     const blocksInfoElem = document.querySelector('.blocks-info');
 
@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.regenerate-blocks-btn')
         .addEventListener('click', () => {
-            blockList.innerHTML = '';
-            renderNonToggleBlocks(blockList, BLOCKS_COUNT);
+            fillWithNonToggleBlocks(blockList, BLOCKS_COUNT);
 
             if (blocksInfoElem.innerHTML === '') {
                 return;

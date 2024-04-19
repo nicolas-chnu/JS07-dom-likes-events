@@ -1,13 +1,19 @@
-export function renderNonToggleBlocks(elem, count) {
-    for (let i = 0; i < count; i++) {
-        const block = document.createElement('div')
-        block.setAttribute('id', 'block-' + i)
+let blockCounter = 1;
+
+export function fillWithNonToggleBlocks(blocksParent, count) {
+    blocksParent.innerHTML = '';
+    blockCounter = 0;
+
+    while (blockCounter < count) {
+        const block = document.createElement('div');
+        block.setAttribute('id', `block-${blockCounter + 1}`);
         block.classList.add('non-toggle-block');
 
         applyRandomBg(block);
         applyRandomSize(block, 50, 150);
 
-        elem.appendChild(block);
+        blocksParent.appendChild(block);
+        blockCounter++;
     }
 }
 
