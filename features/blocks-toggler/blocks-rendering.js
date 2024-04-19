@@ -1,64 +1,52 @@
-const blockFactory = new BlockFactory();
-const blockStyler = new BlockStyler();
+let blocksCount = 0;
 
 export function fillWithNonToggleBlocks(blocksParent, count) {
     blocksParent.innerHTML = '';
-    blockFactory.resetCount()
-
-    while (blockFactory.blocksCount < count) {
-        const block = blockFactory.createNonToggleBlock();
-
-        blockStyler.applyRandomBg(block);
-        blockStyler.applyRandomSize(block, 50, 150);
-
-        blocksParent.appendChild(block);
-    }
-}
-
-function applyRandomSize(elem, minPx, maxPx) {
-    elem.style.height = randomPx(minPx, maxPx + 1);
-    elem.style.width = randomPx(minPx, maxPx + 1);
-}
-
-function applyRandomBg(elem) {
-    elem.style.backgroundColor = getRandomColor();
-}
-
-function randomPx(lower, upper) {
-    return Math.floor(Math.random() * (upper - lower)) + lower + 'px';
-}
-
-class BlockFactory {
     blocksCount = 0;
 
-    createNonToggleBlock() {
-        const block = this.#createBlock();
-        block.classList.add('non-toggle-block');
+    for (let i = 0; i < count; i++) {
+        const block = new BlockBuilder(i + 1)
+            .setNonToggle()
+            .applyRandomBg()
+            .applyRandomSize(50, 150)
+            .build();
 
-        return block;
-    }
-
-    resetCount() {
-        this.blocksCount = 0;
-    }
-
-    #createBlock() {
-        const block = document.createElement('div');
-        block.setAttribute('id', `block-${this.blocksCount + 1}`);
-        this.blocksCount++;
-
-        return block;
+        blocksParent.appendChild(block);
+        blocksCount++;
     }
 }
 
-class BlockStyler {
-    applyRandomSize(elem, minPx, maxPx) {
-        elem.style.height = this.#randomPx(minPx, maxPx + 1);
-        elem.style.width = this.#randomPx(minPx, maxPx + 1);
+class BlockBuilder {
+    #block;
+
+    constructor(number) {
+        this.#block = document.createElement('div');
+        this.#block.setAttribute('id', `block-${number}`);
     }
 
-    applyRandomBg(elem) {
-        elem.style.backgroundColor = this.#getRandomColor();
+    build() {
+        return this.#block;
+    }
+
+    setNonToggle() {
+        this.#block.classList.add('non-toggle-block');
+        return this;
+    }
+
+    setToggle() {
+        this.#block.classList.add('toggle-block');
+        return this;
+    }
+
+    applyRandomSize(minPx, maxPx) {
+        this.#block.style.height = this.#randomPx(minPx, maxPx + 1);
+        this.#block.style.width = this.#randomPx(minPx, maxPx + 1);
+        return this;
+    }
+
+    applyRandomBg() {
+        this.#block.style.backgroundColor = this.#getRandomColor();
+        return this;
     }
 
     #randomPx(lower, upper) {
