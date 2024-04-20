@@ -14,7 +14,16 @@ export function refreshBlockList(blockList) {
 }
 
 export function changeBlockSize(block) {
+    const width = prompt('Enter width');
+    if (width === null) return false;
 
+    const height = prompt('Enter height');
+    if (height === null) return false;
+
+    block.style.width = width + 'px';
+    block.style.height = height + 'px';
+
+    return true;
 }
 
 export function addTogglerBlock(blockList) {

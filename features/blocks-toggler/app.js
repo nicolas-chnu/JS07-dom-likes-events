@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     actionsButtons.addEventListener('click', e => handleAction(e));
     blockList.addEventListener('click', e => handleBlockClick(e));
-    blockList.addEventListener('block-changed', e => handleBlockChanged(e));
 
     refreshBlockList(blockList);
 });
@@ -56,13 +55,8 @@ function handleBlockClick(event) {
         return;
     }
 
-    changeBlockSize(block);
-}
-
-function handleBlockChanged(event) {
-    const block = event.target;
-    const blockInfoId = block.dataset.blockInfoId;
-    const blockInfo = blockInfoList.querySelector('#' + blockInfoId);
-
-    updateBlockInfo(blockInfo);
+    if (changeBlockSize(block)) {
+        const blockInfo = blockInfoList.querySelector('#' + block.dataset.blockInfoId);
+        updateBlockInfo(blockInfo);
+    }
 }
