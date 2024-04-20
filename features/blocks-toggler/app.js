@@ -1,4 +1,4 @@
-import {addTogglerBlock, changeBlockSize, refreshBlockList} from "./block-list.js";
+import {addTogglerBlock, changeBlockSize, refreshBlockList, scrollToBottom} from "./block-list.js";
 import {refreshBlockInfoList, scrollToBlockInfo, updateBlockInfo} from "./block-info-list.js";
 import {} from "./toggle-list.js";
 
@@ -32,6 +32,7 @@ function handleAction(event) {
             break;
         case "add-toggle-block":
             addTogglerBlock(blockList);
+            scrollToBottom(blockList);
             break;
         case "refresh-block-list":
             refreshBlockList(blockList);

@@ -28,7 +28,19 @@ export function changeBlockSize(block) {
 }
 
 export function addTogglerBlock(blockList) {
+    const block = new BlockBuilder()
+        .enableBlockInfo()
+        .enableToggle()
+        .applyRandomBg()
+        .applyRandomSize(50, 150)
+        .build();
 
+    blockList.appendChild(block);
+    blockList.scrollTop = blockList.scrollHeight;
+}
+
+export function scrollToBottom(blockList) {
+    blockList.scrollTop = blockList.scrollHeight;
 }
 
 class BlockBuilder {
