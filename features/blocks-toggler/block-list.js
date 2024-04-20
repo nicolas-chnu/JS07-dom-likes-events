@@ -5,6 +5,7 @@ export function refreshBlockList(blockList) {
 
     for (let i = 0; i < INITIAL_BLOCK_COUNT; i++) {
         const block = new BlockBuilder()
+            .enableBlockInfo()
             .applyRandomBg()
             .applyRandomSize(50, 150)
             .build();
@@ -42,7 +43,12 @@ class BlockBuilder {
         return this.#block;
     }
 
-    setToggle() {
+    enableBlockInfo() {
+        this.#block.setAttribute('data-block-info-id', crypto.randomUUID());
+        return this;
+    }
+
+    enableToggle() {
         this.#block.setAttribute('data-toggle-id', crypto.randomUUID());
         return this;
     }
