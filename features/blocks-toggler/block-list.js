@@ -56,12 +56,12 @@ class BlockBuilder {
     }
 
     enableBlockInfo() {
-        this.#block.setAttribute('data-block-info-id', crypto.randomUUID());
+        this.#block.setAttribute('data-block-info-id', 'info-' + crypto.randomUUID());
         return this;
     }
 
     enableToggle() {
-        this.#block.setAttribute('data-toggle-id', crypto.randomUUID());
+        this.#block.setAttribute('data-toggle-id', 'toggle-' + crypto.randomUUID());
         return this;
     }
 
