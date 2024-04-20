@@ -1,11 +1,13 @@
 import {addTogglerBlock, changeBlockSize, refreshBlockList, scrollToBottom} from "./block-list.js";
-import {refreshBlockInfoList, scrollToBlockInfo, updateBlockInfo} from "./block-info-list.js";
+import {appendBlockInfo, refreshBlockInfoList, scrollToBlockInfo, updateBlockInfo} from "./block-info-list.js";
 import {addToggleForBlock, toggleToggle} from "./toggle-list.js";
 
 let actionsButtons;
 let blockList;
 let blockInfoList;
 let toggleList;
+
+let isBlockInfoGenerated = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     actionsButtons = document.querySelector('.actions');
@@ -28,18 +30,21 @@ function handleAction(event) {
 
     switch (action) {
         case "get-blocks-info":
-            refreshBlockInfoList(blockInfoList, blockList.children);
+            refreshBlockInfoList(blockInfoList, blockList.childNodes);
+            isBlockInfoGenerated = true;
             break;
         case "add-toggle-block":
             const block = addTogglerBlock(blockList);
             scrollToBottom(blockList);
             addToggleForBlock(toggleList, block)
+            appendBlockInfo(blockInfoList, block);
             break;
         case "refresh-block-list":
             refreshBlockList(blockList);
+            toggleList.innerHTML = '';
 
             if (blockInfoList.innerHTML !== '') {
-                refreshBlockInfoList(blockInfoList, blockList.children);
+                refreshBlockInfoList(blockInfoList, blockList.childNodes);
             }
             break;
     }
@@ -52,12 +57,27 @@ function handleBlockClick(event) {
         return;
     }
 
-    if (event.ctrlKey) {
-        scrollToBlockInfo(blockInfoList, block.dataset.blockInfoId);
+    if (event.ctrlKey &&
+        !block.hasAttribute('data-toggle-id') &&
+        !isBlockInfoGenerated) {
+        alert('To access this feature click "Get blocks info"');
         return;
     }
 
-    if (event.altKey && block.hasAttribute('data-toggle-id')) {
+    if (event.ctrlKey) {
+        const blockInfo = blockInfoList.querySelector('#' + block.dataset.blockInfoId);
+        scrollToBlockInfo(blockInfoList, blockInfo);
+        return;
+    }
+
+    if (event.altKey &&
+        !block.hasAttribute('data-toggle-id')) {
+        alert('This feature only works with toggle blocks')
+        return;
+    }
+
+    if (event.altKey &&
+        block.hasAttribute('data-toggle-id')) {
         const toggle = toggleList.querySelector('#' + block.dataset.toggleId);
         toggleToggle(toggle);
         return;
@@ -65,6 +85,6 @@ function handleBlockClick(event) {
 
     if (changeBlockSize(block)) {
         const blockInfo = blockInfoList.querySelector('#' + block.dataset.blockInfoId);
-        updateBlockInfo(blockInfo);
+        updateBlockInfo(blockInfo, block);
     }
 }
