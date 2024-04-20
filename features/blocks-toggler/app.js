@@ -1,8 +1,7 @@
 import {addTogglerBlock, refreshBlockList} from "./block-list.js";
 import {generateBlockInfoList, updateBlockInfoList} from "./block-info-list.js";
+import {generateBlockInfoList, scrollToBlockInfo, updateBlockInfo, updateBlockInfoList} from "./block-info-list.js";
 import {} from "./toggle-list.js";
-
-const INITIAL_BLOCK_COUNT = 12;
 
 let actionsButtons;
 let blockList;
@@ -17,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     actionsButtons.addEventListener('click', e => handleAction(e));
     blockList.addEventListener('click', e => handleBlockClick(e));
+    blockList.addEventListener('block-changed', e => handleBlockChanged(e));
 
     refreshBlockList(blockList);
 });
@@ -47,4 +47,12 @@ function handleAction(event) {
 
 function handleBlockClick(event) {
     return undefined;
+}
+
+function handleBlockChanged(event) {
+    const block = event.target;
+    const blockInfoId = block.dataset.blockInfoId;
+    const blockInfo = blockInfoList.querySelector('#' + blockInfoId);
+
+    updateBlockInfo(blockInfo);
 }
