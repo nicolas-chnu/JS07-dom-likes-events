@@ -1,6 +1,5 @@
-import {addTogglerBlock, refreshBlockList} from "./block-list.js";
-import {generateBlockInfoList, updateBlockInfoList} from "./block-info-list.js";
-import {generateBlockInfoList, scrollToBlockInfo, updateBlockInfo, updateBlockInfoList} from "./block-info-list.js";
+import {addTogglerBlock, changeBlockSize, refreshBlockList} from "./block-list.js";
+import {refreshBlockInfoList, scrollToBlockInfo, updateBlockInfo} from "./block-info-list.js";
 import {} from "./toggle-list.js";
 
 let actionsButtons;
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleAction(event) {
-    const action = event.target.hasAttribute('data-action');
+    const action = event.target.getAttribute('data-action');
 
     if (!action) {
         return;
@@ -30,7 +29,7 @@ function handleAction(event) {
 
     switch (action) {
         case "get-blocks-info":
-            generateBlockInfoList(blockInfoList, blockList.children);
+            refreshBlockInfoList(blockInfoList, blockList.children);
             break;
         case "add-toggle-block":
             addTogglerBlock(blockList);
@@ -39,14 +38,25 @@ function handleAction(event) {
             refreshBlockList(blockList);
 
             if (blockInfoList.innerHTML !== '') {
-                updateBlockInfoList(blockInfoList, blockList.children);
+                refreshBlockInfoList(blockInfoList, blockList.children);
             }
             break;
     }
 }
 
 function handleBlockClick(event) {
-    return undefined;
+    const block = event.target;
+
+    if (!block.classList.contains('block')) {
+        return;
+    }
+
+    if (event.ctrlKey) {
+        scrollToBlockInfo(blockInfoList, block.dataset.blockInfoId);
+        return;
+    }
+
+    changeBlockSize(block);
 }
 
 function handleBlockChanged(event) {
