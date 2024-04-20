@@ -36,7 +36,7 @@ export function addTogglerBlock(blockList) {
         .build();
 
     blockList.appendChild(block);
-    blockList.scrollTop = blockList.scrollHeight;
+    return block;
 }
 
 export function scrollToBottom(blockList) {

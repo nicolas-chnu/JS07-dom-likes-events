@@ -1,6 +1,6 @@
 import {addTogglerBlock, changeBlockSize, refreshBlockList, scrollToBottom} from "./block-list.js";
 import {refreshBlockInfoList, scrollToBlockInfo, updateBlockInfo} from "./block-info-list.js";
-import {} from "./toggle-list.js";
+import {addToggleForBlock, toggleToggle} from "./toggle-list.js";
 
 let actionsButtons;
 let blockList;
@@ -31,8 +31,9 @@ function handleAction(event) {
             refreshBlockInfoList(blockInfoList, blockList.children);
             break;
         case "add-toggle-block":
-            addTogglerBlock(blockList);
+            const block = addTogglerBlock(blockList);
             scrollToBottom(blockList);
+            addToggleForBlock(toggleList, block)
             break;
         case "refresh-block-list":
             refreshBlockList(blockList);
@@ -53,6 +54,12 @@ function handleBlockClick(event) {
 
     if (event.ctrlKey) {
         scrollToBlockInfo(blockInfoList, block.dataset.blockInfoId);
+        return;
+    }
+
+    if (event.altKey && block.hasAttribute('data-toggle-id')) {
+        const toggle = toggleList.querySelector('#' + block.dataset.toggleId);
+        toggleToggle(toggle);
         return;
     }
 
