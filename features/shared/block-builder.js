@@ -31,6 +31,14 @@ export default class BlockBuilder {
         return this;
     }
 
+    addText(text) {
+        const p = document.createElement('p');
+        p.innerText = text;
+
+        this.#block.appendChild(p);
+        return this;
+    }
+
     #randomPx(lower, upper) {
         return Math.floor(Math.random() * (upper - lower)) + lower + 'px';
     }
