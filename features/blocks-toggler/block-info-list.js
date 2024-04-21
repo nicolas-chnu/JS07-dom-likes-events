@@ -22,7 +22,6 @@ export function appendBlockInfo(blockInfoList, block) {
 }
 
 export function updateBlockInfo(blockInfo, block) {
-    console.log('AAAAAAAAAAA')
     const attrList = blockInfo.querySelector('.block-info__attrs');
     attrList.style.borderColor = block.style.backgroundColor;
 
@@ -33,12 +32,12 @@ export function updateBlockInfo(blockInfo, block) {
 
     attrList.innerHTML = `
     <p class="block-attr">width: ${block.clientWidth}px</p>       
-             <p class="block-attr">height: ${block.clientHeight}px</p>
-             <p class="block-attr">window offset X: ${block.offsetLeft}px</p>
-             <p class="block-attr">window offset Y: ${block.offsetTop}px</p>
-             <p class="block-attr">parent offset X: ${containerLeft}px</p>
-             <p class="block-attr">parent offset Y: ${containerTop}px</p>
-             <p class="block-attr">scroll offset Y: ${containerScrollTop}px</p>`;
+    <p class="block-attr">height: ${block.clientHeight}px</p>
+    <p class="block-attr">window offset X: ${block.offsetLeft}px</p>
+    <p class="block-attr">window offset Y: ${block.offsetTop}px</p>
+    <p class="block-attr">parent offset X: ${containerLeft}px</p>
+    <p class="block-attr">parent offset Y: ${containerTop}px</p>
+    <p class="block-attr">scroll offset Y: ${containerScrollTop}px</p>`;
 }
 
 export function scrollToBlockInfo(blockInfoList, blockInfo) {
